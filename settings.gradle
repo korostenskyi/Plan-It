@@ -1,0 +1,4 @@
+rootProject.name='Plan it'
+include ':app'
+include ':domain'
+include ':data'
