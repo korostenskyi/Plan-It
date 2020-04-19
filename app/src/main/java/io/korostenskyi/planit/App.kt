@@ -2,9 +2,13 @@ package io.korostenskyi.planit
 
 import android.app.Application
 import io.korostenskyi.planit.di.applicationModule
-import io.korostenskyi.planit.presentation.di.presentationModule
+import io.korostenskyi.planit.presentation.di.fragmentModule
+import io.korostenskyi.planit.presentation.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.fragment.koin.fragmentFactory
+import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 
@@ -17,9 +21,16 @@ class App : Application() {
     }
 
     private fun initKoin() {
+        val modules = listOf(
+            applicationModule,
+            fragmentModule,
+            viewModelModule
+        )
         startKoin {
+            if (BuildConfig.DEBUG) printLogger(Level.DEBUG)
             androidContext(this@App)
-            modules(applicationModule + presentationModule)
+            fragmentFactory()
+            loadKoinModules(modules)
         }
     }
 
