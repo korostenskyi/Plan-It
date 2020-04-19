@@ -1,6 +1,6 @@
 package io.korostenskyi.planit.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import io.korostenskyi.planit.R
+import io.korostenskyi.planit.presentation.base.ui.BaseActivity
 
-class MainActivity : AppCompatActivity(R.layout.activity_main)
+class MainActivity : BaseActivity(R.layout.activity_main)
